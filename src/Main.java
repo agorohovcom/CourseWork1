@@ -1,19 +1,24 @@
 public class Main {
     public static void main(String[] args) {
         EmployeeBook empBook = new EmployeeBook();
-        System.out.println(empBook.addNewEmployee(new Employee("Джонатанов Джонатан Джонатанович", 5, 1_000_000)));
-
-
-//        employees[0] = new Employee("Петров Петр Петрович", 1, 3300);
-//        employees[1] = new Employee("Антонов Антон Антонович", 2, 5500);
-//        employees[2] = new Employee("Станиславов Станислав Станиславович", 3, 1100);
-//        employees[3] = new Employee("Янов Ян Янович", 3, 7700);
-//        employees[5] = new Employee("Борисов Борис Борисович", 4, 8800);
-//        employees[7] = new Employee("Залипупов Залипуп Залипупович", 1, 4400);
-//        employees[8] = new Employee("Геннадьев Геннадий Геннадиевич", 5, 10000);
+        empBook.addNewEmployee(new Employee("Петров Петр Петрович", 1, 3300));
+        empBook.addNewEmployee(new Employee("Антонов Антон Антонович", 2, 5500));
+        empBook.addNewEmployee(new Employee("Станиславов Станислав Станиславович", 3, 1100));
+        empBook.addNewEmployee(new Employee("Янов Ян Янович", 3, 7700));
+        empBook.addNewEmployee(new Employee("Борисов Борис Борисович", 4, 8800));
+        empBook.addNewEmployee(new Employee("Залипупов Залипуп Залипупович", 1, 4400));
+        empBook.addNewEmployee(new Employee("Геннадьев Геннадий Геннадиевич", 5, 10000));
+        empBook.addNewEmployee(new Employee("Джонатанов Джонатан Джонатанович", 5, 1_000_000));
 
         System.out.println("Список сотрудников со всеми данными:");
         empBook.printAllEmployees();
+        System.out.println();
+
+        System.out.println(empBook.getEmployeeFromId(4));
+//        System.out.println(empBook.getEmployeeFromId(43));        // выбросит ошибку, так как нет сотрудника с таким id
+
+        empBook.deleteEmployeeFromId(8);
+//        empBook.deleteEmployeeFromId(50);                         // выбросит ошибку, так как нет сотрудника с таким id
         System.out.println();
 
         System.out.println("Сумма затрат на ЗП в месяц: " + empBook.getSumMonthSalaries());

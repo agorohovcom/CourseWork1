@@ -1,16 +1,5 @@
 public class EmployeeBook {
-    private Employee[] employees = new Employee[10];
-
-    // тест, удалить
-    public EmployeeBook() {
-        employees[0] = new Employee("Петров Петр Петрович", 1, 3300);
-        employees[1] = new Employee("Антонов Антон Антонович", 2, 5500);
-        employees[2] = new Employee("Станиславов Станислав Станиславович", 3, 1100);
-        employees[3] = new Employee("Янов Ян Янович", 3, 7700);
-        employees[5] = new Employee("Борисов Борис Борисович", 4, 8800);
-        employees[7] = new Employee("Залипупов Залипуп Залипупович", 1, 4400);
-        employees[8] = new Employee("Геннадьев Геннадий Геннадиевич", 5, 10000);
-    }
+    private final Employee[] employees = new Employee[10];
 
     public boolean addNewEmployee(Employee employee) {
         boolean result = false;
@@ -18,7 +7,7 @@ public class EmployeeBook {
             if (employees[i] == null) {
                 employees[i] = employee;
                 result = true;
-                System.out.println("Сотрудник добавлен в ячейку " + i);
+//                System.out.println("Сотрудник добавлен в ячейку " + i);           // для теста
                 break;
             }
         }
@@ -26,7 +15,32 @@ public class EmployeeBook {
     }
 
     public void deleteEmployeeFromId(int id) {
+        boolean result = false;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && employees[i].getId() == id) {
+                employees[i] = null;
+                result = true;
+//                System.out.println("Сотрудник с id " + id + " успешно удалён");   // для теста
+                break;
+            }
+        }
+        if (!result) {
+            throw new RuntimeException("Нет сотрудника с id " + id);
+        }
+    }
 
+    public Employee getEmployeeFromId(int id) {
+        Employee resultEmployee = null;
+        for (Employee e : employees) {
+            if (e != null && e.getId() == id) {
+                resultEmployee = e;
+                break;
+            }
+        }
+        if (resultEmployee == null) {
+            throw new RuntimeException("Нет сотрудника с id " + id);
+        }
+        return resultEmployee;
     }
 
     public void printAllEmployees() {
