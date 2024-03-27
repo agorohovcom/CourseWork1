@@ -6,6 +6,7 @@ public class Main {
         employees[3] = new Employee("Янов Ян Янович", 3, 7700);
         employees[5] = new Employee("Борисов Борис Борисович", 4, 8800);
         employees[7] = new Employee("Залипупов Залипуп Залипупович", 1, 4400);
+        employees[8] = new Employee("Геннадьев Геннадий Геннадиевич", 5, 10000);
 
         System.out.println("Список сотрудников со всеми данными:");
         printAllEmployees();
@@ -25,6 +26,20 @@ public class Main {
 
         System.out.println("Список ФИО всех сотрудников:");
         printAllEmployeesFullNames();
+        System.out.println();
+
+        int indexValue = 10;
+        System.out.printf("Индексируем ЗП сотрудников на %d процентов\n", indexValue);
+        indexSalaries(indexValue);
+        System.out.println("Список сотрудников с новыми ЗП:");
+        printAllEmployees();
+        System.out.println();
+
+        int department = 3;
+        System.out.printf("Сотрудник с минимальной ЗП в отделе %d:\n", department);
+        System.out.println(getEmployeeWithMinSalaryFromDepartment(department));
+        System.out.printf("Сотрудник с максимальной ЗП в отделе %d:\n", department);
+        System.out.println(getEmployeeWithMaxSalaryFromDepartment(department));
         System.out.println();
     }
 
@@ -88,5 +103,43 @@ public class Main {
                 System.out.println(e.getFullName());
             }
         }
+    }
+
+    public static void indexSalaries(int indexValue) {
+        for (Employee employee : employees) {
+            if (employee != null) {
+                employee.setSalary(employee.getSalary() + employee.getSalary() * indexValue / 100);
+            }
+        }
+    }
+
+    public static Employee getEmployeeWithMinSalaryFromDepartment(int department) {
+        Employee employeeToReturn = null;
+        double minSalary = Double.MAX_VALUE;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getDepartment() == department && employee.getSalary() < minSalary) {
+                minSalary = employee.getSalary();
+                employeeToReturn = employee;
+            }
+        }
+        if (employeeToReturn == null) {
+            throw new RuntimeException("В отделе номер " + department + " нет сотрудников");
+        }
+        return employeeToReturn;
+    }
+
+    public static Employee getEmployeeWithMaxSalaryFromDepartment(int department) {
+        Employee employeeToReturn = null;
+        double maxSalary = Double.MIN_VALUE;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getDepartment() == department && employee.getSalary() > maxSalary) {
+                maxSalary = employee.getSalary();
+                employeeToReturn = employee;
+            }
+        }
+        if (employeeToReturn == null) {
+            throw new RuntimeException("В отделе номер " + department + " нет сотрудников");
+        }
+        return employeeToReturn;
     }
 }
