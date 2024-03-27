@@ -3,12 +3,12 @@ import java.util.Objects;
 public class Employee {
     private final String fullName;
     private int department;
-    private int salary;
+    private double salary;
     private final int id;
 
     private static short employeeCounter = 1;
 
-    public Employee(String fullName, int department, int salary) {
+    public Employee(String fullName, int department, double salary) {
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
@@ -23,7 +23,7 @@ public class Employee {
         return department;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
@@ -39,7 +39,7 @@ public class Employee {
         this.department = department;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
